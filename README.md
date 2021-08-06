@@ -25,17 +25,9 @@
 - пример: redirection.testRedirection('http://larri.ru')
 - вернет: False, 'https://www.aviasales.ru/' 
 
-## Тут какое-то описание...
-Бла бла бла
-
-### Возможности
-- lorem
-- ipsum
-- dolore
-
-### Установка
-- бла бла бла
-- бла бла бла
+## Quickstart (Docker)
 ```bash
-docker run blah blah blah
+git clone https://github.com/LetoCTF-NetBee/BeeScan.git
+cd BeeScan
+docker-compose up -d --build
 ```

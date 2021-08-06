@@ -2,20 +2,20 @@ html {
     font-family: 'Open Sans', monospace;
     width: 100%;
     height: 100%;
-    background-color: #f5ebd8;
 }
 
 body {
-    margin: 20px auto;
-    width: 80%;
+    margin: 0px auto;
+    width: 100%;
     height: 100%;
-    background-color: #f0d9add7;
+    background-color: #e2c5a46b;
+    box-shadow: 5px 5px 1px #7a510460;
 }
 
 .topnav {
     display: inline-flex;
     align-items: center;
-    background-color: #e2c5a46b;
+    /* background-color: #e2c5a46b; */
     margin: 0 0;
     width: 100%;
     border-bottom: 4px solid #7A5104;
@@ -27,14 +27,16 @@ body {
     padding: 14px 20px;
     margin: 10px 10px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
     background-color: #e2c5a4;
     -webkit-transition: 0.2s;
     transition: 0.2s;
+    box-shadow: 5px 5px 1px #7a510460;
 }
 
 .topnav a:hover {
-    background-color: #d49d36;
+    background-color: #e2c5a4;
+    box-shadow: none;
 }
 
 #desc_head {

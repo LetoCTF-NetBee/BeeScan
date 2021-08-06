@@ -8,6 +8,7 @@ $('form#check_url_form').submit(function(e) {
     });
 
     $("#resp_head").text("");
+    $("#check_for").text("");
     $("#resp_head").removeClass("passed");
     $("#resp_head").removeClass("failed");
 
@@ -25,9 +26,9 @@ $('form#check_url_form').submit(function(e) {
                 return;
             }
 
-            // if (stats.url) {
-            //     $("#check_for").text("Проверка сайта: " + stats.url);
-            // }
+            if (stats.url) {
+                $("#check_for").text("Проверка сайта: " + stats.url);
+            }
 
             if (stats.is_safe) {
                 $("#resp_head").addClass("passed");
@@ -51,9 +52,9 @@ $('form#check_url_form').submit(function(e) {
 
             $("#no_redirect").addClass("show");
             if (stats.no_redirect) {
-                $("#no_redirect").addClass("passed");
-            } else {
                 $("#no_redirect").addClass("failed");
+            } else {
+                $("#no_redirect").addClass("passed");
             }
 
             $("#not_in_blacklist").addClass("show");

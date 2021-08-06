@@ -8,4 +8,5 @@ RUN pip install wheel
 RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
-CMD ["flask", "run"]
+WORKDIR /
+CMD ["gunicorn", "-w", "4", "-b", ":80", "app:create_app()"]

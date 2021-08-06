@@ -84,12 +84,12 @@ $('form#check_url_form').submit(function(e) {
                 $("#domain_low").addClass("failed");
             }
 
-            $("#no_mimic").addClass("show");
-            if (stats.no_mimic) {
-                $("#no_mimic").addClass("passed");
-            } else {
-                $("#no_mimic").addClass("failed");
-            }
+            // $("#no_mimic").addClass("show");
+            // if (stats.no_mimic) {
+            //     $("#no_mimic").addClass("passed");
+            // } else {
+            //     $("#no_mimic").addClass("failed");
+            // }
 
             $("#spinner").removeClass("show");
         })

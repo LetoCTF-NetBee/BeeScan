@@ -101,10 +101,10 @@ class CheckData:
             self.score += 5
         if self.domain_low:
             self.score += 1
-        if self.no_mimic:
-            self.score += 5
+        # if self.no_mimic:
+        #     self.score += 5
 
-        if self.score >= 20:
+        if self.score >= 15:
             self.is_safe = True
         else:
             self.is_safe = False

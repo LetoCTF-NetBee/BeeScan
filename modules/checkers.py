@@ -10,15 +10,16 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
+
 creation = ['Creation Date', 'created']
 
 def scanDatabaseOpenphish(domain):
-    file = open('openphish.txt', 'r')
-    table = file.readlines()
-    for i in table:
-        if domain == i:
-            return False, "Found in database"
-    return True, "Not found in database"
+	file = open('openphish.txt', 'r')
+	table = file.readlines()
+	for i in table:
+		if domain == i:
+			return False, "Found in database"
+	return True, "Not found in database"
  
 def checkSSL(domain):
 	try:
@@ -66,6 +67,8 @@ def testRedirection(url):
 		driver.get(url)
 		if driver.current_url != url:
 			return False, driver.current_url
+		else:
+			return True, driver.current_url
 	except Exception as e:
 		return False, 'error: ' + str(e)
 	finally:
@@ -120,9 +123,24 @@ def domen(url):
 	else: 
 		return True, c
 
+def findDubl(url):
+	driver = webdriver.Chrome('chromedriver.exe')
+	try:
+		driver.get('https://www.google.ru/search?q=' + url)
+		elem = driver.find_elements_by_class_name('card-section')
+		if len(elem) > 0:
+			return False, elem[0].find_element_by_tag_name('a').text
+		else:
+			return True, 'OK'
+	except Exception as e:
+		return False, 'error: ' + str(e)
+	finally:
+		driver.close()
+
 if __name__ == '__main__':
 
 	url = 'google.com'
+	print(findDubl(url))
 	print(checkSSL(url))
 	print(testRedirection(url))
 	print(checkValidDate(url, 14))

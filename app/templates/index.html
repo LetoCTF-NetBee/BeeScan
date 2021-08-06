@@ -1,7 +1,19 @@
-{% extends "base.html" %}
-{% block main %}
-<div>
-    main content
+{% extends "base.html" %} {% block main %}
+<div id="main_form">
+    <h1>Проверить сайт</h1>
+    <form id="check_url_form" action="{{ url_for('check.check_url') }}" method="POST">
+        <input type="text" placeholder="URL сайта:" id="url" name="url">
+        <div id="resp_container">
+            <h2 id="check_for"></h2>
+            <h2 id="resp_head"></h2>
+            <ul id="resp_list" class="checks">
+                <li id="ssl_check">Проверка SSL сертификата</li>
+                <li id="reg_check">Проверка времени регистрации</li>
+                <li id="test1">Тест 1</li>
+                <li id="test2">Тест 2</li>
+            </ul>
+        </div>
+        <input id="check_btn" type="submit" value="Проверить">
+    </form>
 </div>
-<img class="burger" src="{{ url_for('static', filename='beescan.png') }}" alt="">
 {% endblock %}

@@ -1,0 +1,141 @@
+html {
+    font-family: 'Open Sans', monospace;
+    width: 100%;
+    height: 100%;
+    background-color: #f5ebd8;
+}
+
+body {
+    margin: 20px auto;
+    width: 80%;
+    height: 100%;
+    background-color: #f0d9add7;
+}
+
+.topnav {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e2c5a46b;
+    margin: 0 0;
+    width: 100%;
+    border-bottom: 4px solid #7A5104;
+}
+
+.topnav a {
+    color: #7A5104;
+    text-align: center;
+    padding: 14px 20px;
+    margin: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #e2c5a4;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.topnav a:hover {
+    background-color: #d49d36;
+}
+
+#desc_head {
+    margin: 20px 20px 0px 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+#desc_head h1 {
+    color: #7A5104;
+}
+
+#desc_head img {
+    height: 100px;
+    margin-right: 20px;
+}
+
+#main_desc {
+    color: #7A5104;
+    margin: 20px 20px 0px 20px;
+}
+
+#main_form {
+    color: #7A5104;
+    display: block;
+}
+
+#main_form h1 {
+    margin: 20px 20px 0px 20px;
+}
+
+#main_form form {
+    margin: 0px 20px 0px 20px;
+}
+
+#main_form input[type=text] {
+    font-family: 'Open Sans', monospace;
+    color: #7A5104;
+    background-color: #e2c5a4;
+    width: 100%;
+    font-size: 20px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 15px 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #6d6d6d;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    outline: none;
+}
+
+input[type=submit],
+input[type=button] {
+    font-family: 'Open Sans', monospace;
+    color: #7A5104;
+    font-size: 20px;
+    width: 200px;
+    padding: 15px 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #6d6d6d;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    outline: none;
+    background-color: #e2c5a4;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555555;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover {
+    border: 3px solid #555555;
+    background-color: #d49d36;
+}
+
+ul {
+    font-size: 20px;
+}
+
+li {
+    display: none;
+}
+
+li.show {
+    display: block;
+}
+
+.passed::before {
+    content: "✅ ";
+}
+
+.failed::before {
+    content: "❌ ";
+}
+
+#main_docs {
+    color: #7A5104;
+    margin: 20px 20px 0px 20px;
+}

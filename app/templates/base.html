@@ -5,23 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for( 'static', filename='js/jquery-3.6.0.min.js') }}"></script>
     <title>BeeScan</title>
 </head>
 
 <body>
-    <header>
-        <h1>Some header</h1>
-    </header>
+    <div class="topnav">
+        <a class="active" href="{{ url_for('main.index') }}">Главная</a>
+        <a href="{{ url_for('main.about') }}">О платформе</a>
+        <a href="{{ url_for('main.docs') }}">Документация</a>
+        <!-- <a href="#profile">Профиль</a> -->
+    </div>
 
     <!-- main -->
     <main>
-        {% block main %}
-        {% endblock %}
+        {% block main %} {% endblock %}
     </main>
-
-    <footer>
-        <h1>Some footer</h1>
-    </footer>
 </body>
+
+<script src="{{ url_for( 'static', filename='js/check_url.js') }}"></script>
 
 </html>

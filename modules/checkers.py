@@ -15,15 +15,6 @@ creation = ['Creation Date', 'created']
 
 
 def scanDatabaseOpenphish(domain):
-<<<<<<< HEAD
-	file = open('openphish.txt', 'r')
-	table = file.readlines()
-	for i in table:
-		if domain == i:
-			return False, "Found in database"
-	return True, "Not found in database"
- 
-=======
     file = open('openphish.txt', 'r')
     table = file.readlines()
     for i in table:
@@ -32,7 +23,6 @@ def scanDatabaseOpenphish(domain):
     return True, "Not found in database"
 
 
->>>>>>> origin/dev
 def checkSSL(domain):
     try:
         requests.get('https://' + domain)
@@ -72,24 +62,6 @@ def checkValidDate(domain, period):
 
 
 def testRedirection(url):
-<<<<<<< HEAD
-	driver = webdriver.Chrome('chromedriver.exe')
-	ssl, _  = checkSSL(url)
-	try:
-		if ssl:
-			url = 'https://' + url + '/'
-		else:
-			url = 'http://' + url + '/'
-		driver.get(url)
-		if driver.current_url != url:
-			return False, driver.current_url
-		else:
-			return True, driver.current_url
-	except Exception as e:
-		return False, 'error: ' + str(e)
-	finally:
-		driver.close()
-=======
     driver = webdriver.Chrome('chromedriver.exe')
     ssl, _ = checkSSL(url)
     try:
@@ -105,7 +77,6 @@ def testRedirection(url):
     finally:
         driver.close()
 
->>>>>>> origin/dev
 
 def testSecurity(url):
     driver = webdriver.Chrome('chromedriver.exe')
@@ -160,33 +131,24 @@ def domen(url):
 
 
 def findDubl(url):
-	driver = webdriver.Chrome('chromedriver.exe')
-	try:
-		driver.get('https://www.google.ru/search?q=' + url)
-		elem = driver.find_elements_by_class_name('card-section')
-		if len(elem) > 0:
-			return False, elem[0].find_element_by_tag_name('a').text
-		else:
-			return True, 'OK'
-	except Exception as e:
-		return False, 'error: ' + str(e)
-	finally:
-		driver.close()
+    driver = webdriver.Chrome('chromedriver.exe')
+    try:
+        driver.get('https://www.google.ru/search?q=' + url)
+        elem = driver.find_elements_by_class_name('card-section')
+        if len(elem) > 0:
+            return False, elem[0].find_element_by_tag_name('a').text
+        else:
+            return True, 'OK'
+    except Exception as e:
+        return False, 'error: ' + str(e)
+    finally:
+        driver.close()
+
 
 if __name__ == '__main__':
 
-<<<<<<< HEAD
-	url = 'google.com'
-	print(findDubl(url))
-	print(checkSSL(url))
-	print(testRedirection(url))
-	print(checkValidDate(url, 14))
-	print(testBlackList(url))
-	print(testSecurity(url))
-	print(scanDatabaseOpenphish(url))
-	print(domen(url))
-=======
     url = 'google.com'
+    print(findDubl(url))
     print(checkSSL(url))
     print(testRedirection(url))
     print(checkValidDate(url, 14))
@@ -194,4 +156,4 @@ if __name__ == '__main__':
     print(testSecurity(url))
     print(scanDatabaseOpenphish(url))
     print(domen(url))
->>>>>>> origin/dev
+    print(findDubl(url))

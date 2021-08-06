@@ -1,8 +1,25 @@
 version: "3.3"
-services: 
+
+networks:
+    web:
+        external: true
+        driver:  bridge
+
+services:
+    chrome:
+        image: selenium/standalone-chrome:latest
+        hostname: chrome
+        networks:
+            - web
+        privileged: true
+        shm_size: 2g
+
     app:
         build: app
         restart: on-failure
         ports: 
             - "80:80"
             - "443:443"
+
+        networks:
+            - web

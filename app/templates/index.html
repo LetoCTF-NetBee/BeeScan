@@ -6,11 +6,16 @@
         <div id="resp_container">
             <h2 id="check_for"></h2>
             <h2 id="resp_head"></h2>
+            <div id="spinner" class="loading"></div>
             <ul id="resp_list" class="checks">
                 <li id="ssl_check">Проверка SSL сертификата</li>
-                <li id="reg_check">Проверка времени регистрации</li>
-                <li id="test1">Тест 1</li>
-                <li id="test2">Тест 2</li>
+                <li id="reg_check">Домен зарегистрирован больше 2х недель назад</li>
+                <li id="no_redirect">Нет перенаправлениий на другие сайты</li>
+                <li id="not_in_blacklist">Домен не находится в черных листах</li>
+                <li id="trustued_site">Доверенный сайт</li>
+                <li id="not_in_openphish">Не находится в базе OpenPhish</li>
+                <li id="domain_low">Домен высокого уровня</li>
+                <li id="no_mimic">Нет замены символов (o &#8594; 0)</li>
             </ul>
         </div>
         <input id="check_btn" type="submit" value="Проверить">

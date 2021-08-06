@@ -10,16 +10,15 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+import os
 
 creation = ['Creation Date', 'created']
 
 
-options = Options()
-options.headless = True
-
-
 def scanDatabaseOpenphish(domain):
-    file = open('openphish.txt', 'r')
+    file = open('/app/modules_linux/openphish.txt', 'r')
     table = file.readlines()
     for i in table:
         if domain == i:
@@ -66,7 +65,8 @@ def checkValidDate(domain, period):
 
 
 def testRedirection(url):
-    driver = webdriver.Chrome('./chromedriver', options=options)
+    driver = webdriver.Remote(
+        "http://chrome:4444/wd/hub", desired_capabilities=DesiredCapabilities.CHROME)
     ssl, _ = checkSSL(url)
     try:
         if ssl:
@@ -83,7 +83,8 @@ def testRedirection(url):
 
 
 def testSecurity(url):
-    driver = webdriver.Chrome('./chromedriver', options=options)
+    driver = webdriver.Remote(
+        "http://chrome:4444/wd/hub", desired_capabilities=DesiredCapabilities.CHROME)
     try:
         driver.get('https://xseo.in/viruscan')
         elem = driver.find_element_by_name("url")
@@ -106,7 +107,8 @@ def testSecurity(url):
 
 
 def testBlackList(url):
-    driver = webdriver.Chrome('./chromedriver', options=options)
+    driver = webdriver.Remote(
+        "http://chrome:4444/wd/hub", desired_capabilities=DesiredCapabilities.CHROME)
     try:
         driver.get('https://sitecheck.sucuri.net/results/' + url)
         elem = driver.find_element_by_class_name('padding-left-35')
@@ -122,7 +124,7 @@ def testBlackList(url):
         driver.close()
 
 
-def domen(url):
+def domain(url):
     if url.find('//') != -1:
         url = url[url.find('//')+2:]
     while url.rfind('/') != -1:
@@ -134,13 +136,30 @@ def domen(url):
         return True, c
 
 
+def findDubl(url):
+    driver = webdriver.Remote(
+        "http://chrome:4444/wd/hub", desired_capabilities=DesiredCapabilities.CHROME)
+    try:
+        driver.get('https://www.google.ru/search?q=' + url)
+        elem = driver.find_elements_by_class_name('card-section')
+        if len(elem) > 0:
+            return False, elem[0].find_element_by_tag_name('a').text
+        else:
+            return True, 'OK'
+    except Exception as e:
+        return False, 'error: ' + str(e)
+    finally:
+        driver.close()
+
+
 if __name__ == '__main__':
 
-    url = 'google.com'
+    url = 'yandex.ru'
     print(checkSSL(url))
     print(testRedirection(url))
     print(checkValidDate(url, 14))
     print(testBlackList(url))
     print(testSecurity(url))
     print(scanDatabaseOpenphish(url))
-    print(domen(url))
+    print(domain(url))
+    print(findDubl(url))

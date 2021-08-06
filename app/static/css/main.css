@@ -125,10 +125,6 @@ li {
     display: none;
 }
 
-li.show {
-    display: block;
-}
-
 .passed::before {
     content: "✅ ";
 }
@@ -140,4 +136,28 @@ li.show {
 #main_docs {
     color: #7A5104;
     margin: 20px 20px 0px 20px;
+}
+
+.loading {
+    height: 0;
+    width: 0;
+    padding: 30px;
+    border: 6px solid #ccc;
+    border-right-color: #888;
+    border-radius: 50px;
+    -webkit-animation: rotate 0.8s infinite linear;
+    margin: 0 auto;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+@-webkit-keyframes rotate {
+    /* 100% keyframe for  clockwise. 
+       use 0% instead for anticlockwise */
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }

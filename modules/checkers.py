@@ -56,7 +56,7 @@ def checkValidDate(domain, period):
 		return False, abs(delta.days - period)
 
 def testRedirection(url):
-	driver = webdriver.Chrome('C:/Users/Larri/projects/CTF/hakaton/BeeScan/modules/chromedriver.exe')
+	driver = webdriver.Chrome('chromedriver.exe')
 	ssl, _  = checkSSL(url)
 	try:
 		if ssl:
@@ -72,7 +72,7 @@ def testRedirection(url):
 		driver.close()
 
 def testSecurity(url):
-	driver = webdriver.Chrome('C:/Users/Larri/projects/CTF/hakaton/BeeScan/modules/chromedriver.exe')
+	driver = webdriver.Chrome('chromedriver.exe')
 	try:
 		driver.get('https://xseo.in/viruscan')
 		elem = driver.find_element_by_name("url")
@@ -94,7 +94,7 @@ def testSecurity(url):
 		driver.close()
 
 def testBlackList(url):
-	driver = webdriver.Chrome('C:/Users/Larri/projects/CTF/hakaton/BeeScan/modules/chromedriver.exe')
+	driver = webdriver.Chrome('chromedriver.exe')
 	try:
 		driver.get('https://sitecheck.sucuri.net/results/' + url)
 		elem = driver.find_element_by_class_name('padding-left-35')

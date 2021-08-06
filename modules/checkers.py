@@ -39,12 +39,14 @@ def returnDateCreationShopify(domain):
 		result = soup.find('pre', {'class': 'whois-record'})
 		for item in creation:
 			if item in result.text:
-				return result.text[result.text.find(item) + len(item) + 1: result.text.find('Z', result.text.find(item)) + 1]
- 	except:
- 		return datetime.now(). ''
+				return result.text[result.text.find(item) + len(item) + 1: result.text.find('Z', result.text.find(item)) + 1], 'OK'
+	except Exception as e:
+		return datetime.now(), str(e)
 
 def checkValidDate(domain, period):
-	date = returnDateCreationShopify(domain)
+	date, err = returnDateCreationShopify(domain)
+	if err != 'OK':
+		return False, err
 	now = datetime.now()
 	date = date.replace('T', ' ').replace('Z', ' ').strip()
 	delta = now - datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
@@ -80,17 +82,12 @@ def testSecurity(url):
 
 		repa = elem[23].text.split()[2][1:-1]
 
-		if elem[27].text == 'OK':
-			GoogleSerch = True
-		else:
-			GoogleSerch = False
-
 		if elem[33].text == 'OK':
 			YandexSerch = True
 		else:
 			YandexSerch = False
 
-		return repa, GoogleSerch, YandexSerch
+		return repa, YandexSerch
 	except Exception as e:
 		return False, 'error: ' + str(e)
 	finally:
@@ -112,13 +109,24 @@ def testBlackList(url):
 	finally:
 		driver.close()
 
+def domen(url):
+	if url.find('//') != -1:
+		url = url[url.find('//')+2:]
+	while url.rfind('/') != -1:
+		url = url[:url.rfind('/')]
+	c = url.count('.')
+	if c > 1:
+		return False, c
+	else: 
+		return True, c
+
 if __name__ == '__main__':
 
-	url = 'президент.рф'
-
+	url = 'google.com'
 	print(checkSSL(url))
 	print(testRedirection(url))
 	print(checkValidDate(url, 14))
 	print(testBlackList(url))
 	print(testSecurity(url))
 	print(scanDatabaseOpenphish(url))
+	print(domen(url))
